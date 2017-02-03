@@ -1,34 +1,33 @@
-<html>
-    <head>
-        <title>article one -by shrawani</title>
+var express = require('express');
+var morgan = require('morgan');
+var path = require('path');
 
-    </head>
-    <body>
-        <div>
-        <a href="/">home</a>
-        </div>
-        <hr/>
-        <h3>
-            article one
-        </h3>        
-        <div>
-            3 feb 2017
-        </div>
-        <div>
-            <p>
-                this is my first article on web app!!  this is my first article on web app!! this is my first article on web app!! this is my first article on web app!! this is my first article on web app!! this is my first article on web app!!
-            </p>
-            <p>
-                this is my first article on web app!! this is my first article on web app!! this is my first article on web app!! this is my first article on web app!! this is my first article on web app!!
-            </p>
-            <p>
-                this is my first article on web app!! this is my first article on web app!! this is my first article on web app!! this is my first article on web app!! this is my first article on web app!!
-            </p>
-            <p>
-                this is my first article on web app!! this is my first article on web app!! this is my first article on web app!! this is my first article on web app!! this is my first article on web app!! this is my first article on web app!!
-            </p>
-        </div>
-    </body>
-</html>
+var app = express();
+app.use(morgan('combined'));
 
-</html>
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+app.get('/article one', function (req, res) {
+ res.sendFile(path.join(__dirname, 'ui', 'article one.html'));
+});
+});
+app.get('/article two', function (req, res) {
+  res.send('article two will be requested and served here');
+});
+app.get('/article three', function (req, res) {
+  res.send('article three will be requested and served here');
+});
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+});
+
+app.get('/ui/madi.png', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
+
+
+var port = 8080; // Use 8080 for local development because you might already have apache running on 80
+app.listen(8080, function () {
+  console.log(`IMAD course app listening on port ${port}!`);
+});
